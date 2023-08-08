@@ -7,7 +7,9 @@ function compare(a, b) {
       return 0;
   }
 }
-
+ 
+ 
+ 
 function calculateMinCost() {
   //your code here
   let str=document.getElementById('rope-lengths').value.split(",");
@@ -33,8 +35,8 @@ while(arr.length>=2){
   // console.log("total "+total+"----------------------");
 }
 console.log(total);
-
-
+ 
+ 
 let result=document.getElementById('result');
 result.innerHTML=total;
 }  
