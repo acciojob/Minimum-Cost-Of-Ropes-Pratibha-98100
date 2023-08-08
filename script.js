@@ -1,25 +1,40 @@
-const result = document.getElementById('result');
-const arr = document.getElementById('rope-length').split(',');
-	
+function compare(a, b) {
+  if (a < b) {
+      return -1;
+  } else if (a > b) {
+      return 1;
+  } else {
+      return 0;
+  }
+}
+
 function calculateMinCost() {
+  //your code here
+  let str=document.getElementById('rope-lengths').value.split(",");
+  let arr=str.map((str)=>parseInt(str));
+  // console.log(arr);
   
-  const minHeap = new PriorityQueue();
-	for(const len of arr){
-		minHeap.add(len);
-	}
+let total=0;
+arr=arr.sort(compare);
+// console.log("arr ",arr);
+while(arr.length>=2){
+  let sum=arr[0]+arr[1];
+  // console.log(sum);
+  let rem=[];
+  rem.push(sum);
+  for(let k=2;k<arr.length;k++){
+    rem.push(arr[k]);
+  }
+  rem=rem.sort(compare);
+  // console.log("rem ",rem);
+  arr=[...rem];
+  // console.log("arr ",arr);
+  total=total+sum;
+  // console.log("total "+total+"----------------------");
+}
+console.log(total);
 
-	let cost = 0;
 
-	while(minHeap.size() > 1) {
-		const min1 = minHeap.poll();
-		const min2 = minHeap.poll();
-
-		const sum = min1 + min2;
-
-		minHeap.add(sum);
-
-		cost += sum;
-	}
-	
-	result.innerText = cost;
+let result=document.getElementById('result');
+result.innerHTML=total;
 }  
